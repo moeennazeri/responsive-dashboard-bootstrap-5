@@ -1,0 +1,209 @@
+<header class="header" id="header">
+  <div class="header__container">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- آیکون‌های سمت راست -->
+        <div class="d-flex">
+          <button
+            class="header__toggle"
+            id="header-toggle"
+            (click)="toggleSidebar()"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+          <a  class="navbar-brand mx-auto Brand d-md-none">
+            <span
+              ><img
+                src="logopunz/logo.png"
+                alt=""
+                class="logo"
+            /></span>
+            <span>  پلتفرم تعاملی پونز</span>
+          </a>
+          <!-- <a class="nav-link" href="#"><i class="bi bi-envelope"></i></a> -->
+        </div>
+
+        <!-- لوگو یا عنوان (در مرکز) -->
+
+        <!-- آیکون‌های سمت چپ -->
+        <div class="d-flex">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle notification-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-bell"></i>
+              <span class="badge notification-badge">{{ cards.length }}</span>
+            </button>
+          
+            <ul class="dropdown-menu dropdown-menu-end notification-menu">
+             <li *ngFor="let card of displayedCards" class="notification-item">
+                <a class="dropdown-item message-item"  (click)="openCardDetails(card)" (click)="managecampain('manage-campain')">
+                  <div class="fw-bold message-text">{{ card.message }}</div>
+                  <small class="message-date">📅 {{ formatPersianDate(card.date) }}</small>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          
+          
+          
+          <!-- <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ////////sidebar//// -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar__container">
+    <div class="d-none d-md-block">
+      <div class="sidebar__user">
+        <div class="sidebar__img">
+          <img
+            src="logopunz/logo.png"
+            alt=""
+            class="logo"
+          />
+        </div>
+        <div class="sidebar__info">
+          <h3>  پلتفرم تعاملی پونز</h3>
+          <!-- <span>اولین پلتفرم مدیریت</span> -->
+        </div>
+      </div>
+    </div>
+    <div class="sidebar__content">
+      <div>
+        <h6 class="sidebar__title">پیام ناشناس</h6>
+        <div class="sidebar__list">
+          <a
+            class="sidebar__link active-link"
+            (click)="activateLink($event); 
+            activateLinkk('message-adminpanel')"
+          >
+          <i class="bi bi-border-style"></i>
+            <span>ایجاد پیام ناشناس</span>
+          </a>
+
+          <a
+            class="sidebar__link"
+            (click)="activateLink($event)"
+            (click)="managecampain('manage-campain')"
+          >
+          <i class="bi bi-envelope-fill"></i>
+            <span> مشاهده پیام های دریافتی</span>
+          </a>
+
+          <!-- <a href="#" class="sidebar__link" (click)="activateLink($event)">
+            <i class="bi bi-calculator-fill"></i>
+            <span>ماشین حساب</span>
+          </a> -->
+
+          <!-- <a href="#" class="sidebar__link" (click)="activateLink($event)" >
+            <i class="bi bi-arrow-down-up"></i>
+            <span>للالالال</span>
+          </a> -->
+          <!-- <a href="#" class="sidebar__link" (click)="activateLink($event)">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <span>چارت</span>
+          </a> -->
+        </div>
+      </div>
+       <div>
+        <h6 class="sidebar__title">ابزارهای کاربردی</h6>
+        <div class="sidebar__list">
+          <a 
+          (click)="activateLink($event)"
+         (click)="activateLinkk('short-link')" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="sidebar__link">
+          <i class="bi bi-link-45deg"></i>
+          <span>کوتاه کننده لینک</span>
+        </a>
+        </div>
+      </div>
+      <div>
+        <h6 class="sidebar__title">نظرسنجی</h6>
+        <div class="sidebar__list">
+          <a href="/intro-survey" class="sidebar__link" 
+          (click)="activateLink($event)"
+          target="_blank" 
+          rel="noopener noreferrer" >
+            <i class="bi bi-ui-checks-grid"></i>
+            <span>ایجاد نظرسنجی</span>
+          </a>
+
+          <!-- <a href="#" class="sidebar__link" (click)="activateLink($event)">
+            <i class="bi bi-envelope-arrow-down-fill"></i>
+            <span>ایمیل</span>
+          </a> -->
+
+          <!-- <a href="#" class="sidebar__link" (click)="activateLink($event)">
+            <i class="bi bi-bell-fill"></i>
+            <span>نوتیفیکیشن</span>
+          </a> -->
+        </div>
+      </div>
+     
+    </div>
+    <div class="sidebar__actions">
+      <!-- <button>
+        <i
+          class="bi bi-moon-stars-fill sidebar__link sidebar__theme"
+          id="theme-button"
+        >
+          <span>تم</span>
+        </i>
+      </button> -->
+
+      <button class="sidebar__link" (click)="showLogoutPopup()">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>خروج</span>
+      </button>
+      
+      <!-- کامپوننت پاپ‌آپ تأیید خروج -->
+      <app-confirm-logout
+        *ngIf="showPopup"
+        [config]="popupConfig"
+        (onAction)="handlePopupAction($event)"
+      >
+      </app-confirm-logout>
+    </div>
+  </div>
+</nav>
+
+<!-- /////////// Main/////// -->
+
+<main class="main container1" id="main">
+  <app-message-adminpanel
+    *ngIf="
+      activeComponent === 'message-adminpanel' && secondactive === 'dashboard'
+    "
+  >
+  </app-message-adminpanel>
+
+ <app-manage-campain
+  *ngIf="secondactive === 'manage-campain' && activeComponent === 'dashboard'"
+  [cards]="cards"
+  [campaignItems]="campaignDropdownItems" 
+  [platformItems]="platformDropdownItems"
+  [currentUrl]="currentUrlPath"
+  [showAdvancedSearch]="true"> 
+    </app-manage-campain>
+  <app-short-link *ngIf="activeComponent === 'short-link'" [showAdvancedSearch]="false"></app-short-link>
+  
+</main>
